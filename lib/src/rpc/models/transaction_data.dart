@@ -42,7 +42,7 @@ class TransactionData<T extends Object> extends Serializable with DataSerializab
   /// ```
   /// TransactionData.parse({ '<parameter>': <value> });
   /// ```
-  static TransactionData parse(final Map<String, dynamic> json) {
+  static TransactionData parse(json) {
     final Object transaction = DataSerializableMixin.decode(json[transactionKey]);
     if (transaction is List) {
       return TransactionData<List<String>>.fromJson(json);
@@ -54,7 +54,7 @@ class TransactionData<T extends Object> extends Serializable with DataSerializab
   }
 
   /// {@macro solana_common.Serializable.fromJson}
-  factory TransactionData.fromJson(final Map<String, dynamic> json) { 
+  factory TransactionData.fromJson(json) { 
     return TransactionData(
       transaction: json[transactionKey],
       meta: Meta.tryFromJson(json['meta']),
